@@ -1,6 +1,19 @@
-require(['config'], function () {
-    require([], function() {
-        console.log("Inside app.js. config loaded as dependency.");
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'routes/router'
+    ],
+    function($, _, Backbone, Router) {
 
-    });
+        var initialize = function () {
+
+            Router.initialize();
+        };
+
+        return {
+            initialize: initialize
+        }
+
+
 });
