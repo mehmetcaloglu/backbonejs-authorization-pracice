@@ -1,32 +1,24 @@
 define([
-        'jquery',
-        'underscore',
-        'backbone',
-        'text!../templates/home.html'
-    ],
-    function($, _, Backbone, HomeTemplate) {
+    'jquery',
+    'underscore',
+    'backbone',
+    'text!../templates/home.html'
+], function ($, _, Backbone, HomeTemplate) {
 
-        var HomeView = Backbone.View.extend({
+    var HomeView = Backbone.View.extend({
 
-            el: '.container',
-            events: {
+        el: '.main-content',
 
-            },
+        initialize: function () {
+            this.render();
+        },
 
-            initialize: function () {
-                console.log("Home page is being initialized...");
-                this.render();
-            },
-
-            render: function () {
-                var compiledTemplate = _.template(HomeTemplate, {} );
-                this.$el.html(compiledTemplate);
-
-            }
-
-        });
-
-        return HomeView;
-
+        render: function () {
+            var compiledTemplate = _.template(HomeTemplate, {});
+            $(this.el).html(compiledTemplate);
+        }
 
     });
+
+    return HomeView;
+});
