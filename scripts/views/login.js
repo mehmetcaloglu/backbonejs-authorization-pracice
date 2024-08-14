@@ -27,22 +27,41 @@ define([
 
         authenticate: function (e) {
             e.preventDefault();
-            var username = $('#username').val();
+            var email = $('#email').val();
             var password = $('#password').val();
 
             // Backend ile login işlemi yapılır ve token alınır
-            $.ajax({
-                url: 'http://localhost:3000/auth/login',
+            fetch('http://localhost:3000/api/v1/auth/signin', {
                 method: 'POST',
-                data: { username: username, password: password },
-                success: function (response) {
-                    localStorage.setItem('token', response.token);
-                    Backbone.history.navigate('home', { trigger: true });
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                error: function () {
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem('token', data.token);
+                    Backbone.history.navigate('home', { trigger: true });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                     alert('Login failed!');
-                }
-            });
+                });
+            // $.ajax({
+            //     url: 'http://localhost:3000/api/v1/auth/signin',
+            //     method: 'POST',
+            //     data: { username: username, password: password },
+            //     success: function (response) {
+            //         localStorage.setItem('token', response.token);
+            //         Backbone.history.navigate('home', { trigger: true });
+            //     },
+            //     error: function () {
+            //         alert('Login failed!');
+            //     }
+            // });
         }
     });
 

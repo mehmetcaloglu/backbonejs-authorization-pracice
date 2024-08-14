@@ -1,14 +1,9 @@
-<div class="register-container">
-    <h3>Register</h3>
-    <form id="register-form">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <!-- role input -->
-        <select id="role" required>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-        </select>
-        <button type="submit">Register</button>
-    </form>
-</div>
+ <div class="register-container max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+        <h3 class="text-2xl font-bold mb-4 text-center">Register</h3>
+        <form id="register-form" class="space-y-4">
+            <input type="email" id="email" placeholder="EMail" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="text" id="name" placeholder="Name" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="password" id="password" placeholder="Password" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Register</button>
+        </form>
+    </div>
