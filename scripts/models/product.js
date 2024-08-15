@@ -11,6 +11,13 @@ define(['underscore', 'backbone'], function (_, Backbone) {
             quantity: 0,
             ratingAvg: 0,
             ratingCount: 0
+        },
+        parse: function (response) {
+            console.log("ProductModel parse ");
+            if (response.getSpecificProduct) {
+                return response.getSpecificProduct;
+            }
+            return response;
         }
     });
     return ProductModel;

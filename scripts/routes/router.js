@@ -28,11 +28,13 @@ define([
         // Token olup olmadığını kontrol eden fonksiyon
         requireAuth: function (callback) {
             var token = localStorage.getItem('token');
-
-            if (token == "undefined" || token === undefined || token.trim() === "") {
+            debugger
+            if (token == "undefined" || token == undefined || token == null) {
+                debugger
                 console.log('Token not found');
                 Backbone.history.navigate('login', { trigger: true });
             } else {
+                debugger
                 console.log('Token found: ' + token);
                 callback();
             }
@@ -76,26 +78,31 @@ define([
         },
 
         defaultAction: function () {
-            Backbone.history.navigate('products', { trigger: true });
+            this.requireAuth(function () {
+                Backbone.history.navigate('products', { trigger: true });
+            }
+            );
         },
 
         showProducts: function () {
-            var products = new ProductCollection(); // Koleksiyonun örneğini oluşturuyoruz
-            products.fetch({
-                success: function (collection, response, options) {
+            this.requireAuth(function () {
+                var products = new ProductCollection(); // Koleksiyonun örneğini oluşturuyoruz
+                products.fetch({
+                    success: function (collection, response, options) {
 
-                    console.log("Data fetched successfully: ", response);
+                        console.log("Data fetched successfully: ", response);
 
-                    var productsListView = new ProductListView({ collection: products });
+                        var productsListView = new ProductListView({ collection: products });
 
-                    productsListView.render();
-                },
-                error: function (collection, response, options) {
+                        productsListView.render();
+                    },
+                    error: function (collection, response, options) {
 
-                    console.error("Failed to fetch data: ", response);
+                        console.error("Failed to fetch data: ", response);
 
 
-                }
+                    }
+                });
             });
         },
 

@@ -20,16 +20,15 @@ define(['underscore', 'backbone', 'collections/products', 'views/product'],
                 this.$el.empty();
 
                 var gridDiv = $('<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>');
-
+                var seeCarts = $('<a href="#carts" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded fixed top-0 right-0 m-4">See Carts</a>');
+                gridDiv.append(seeCarts);
                 // Koleksiyondaki her ürünü render ediyoruz
                 this.collection.each(function (product) {
                     var productView = new ProductView({ model: product });
                     gridDiv.append(productView.render().el);
-                }, this);
+                });
 
                 this.$el.append(gridDiv);
-
-                return this;
             }
         });
 

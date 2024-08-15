@@ -3,9 +3,8 @@ define(['underscore', 'backbone', 'models/product'], function (_, Backbone, Prod
         model: ProductModel,
         url: 'http://localhost:3000/api/v1/products/',
         parse: function (response) {
-            return response.getAllProducts
+            return response.getAllProducts;
         }
     });
     return ProductsCollection;
 });
-    

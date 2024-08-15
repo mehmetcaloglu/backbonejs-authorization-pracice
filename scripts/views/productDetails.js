@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'text!templates/productDetailsTemplate.html'],
+define(['underscore', 'backbone', 'text!templates/productDetailTemplate.html'],
     function (_, Backbone, productDetailsTemplate) {
 
         var ProductDetailsView = Backbone.View.extend({
